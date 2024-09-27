@@ -1,7 +1,7 @@
 const connection = require("./../config/database")
-class UserModel {
+class WorkoutModel {
     static async read  (callback) {
-       const query = "SELECT * FROM usuarios"
+       const query = "SELECT * FROM treinos"
        connection.query (query, (error,results)=> {
         if (error){
             callback(error,null)
@@ -17,8 +17,8 @@ class UserModel {
 
     static async create(data) {
         return new Promise((resolve,reject)=>{
-            const queryInsert = "INSERT INTO usuarios (nome,email,senha) VALUES (?,?,?)"
-            connection.query(queryInsert,[data.nome,data.email,data.senha],(err,result)=>{
+            const queryInsert = "INSERT INTO treinos (nome,descricao,repeticao) VALUES (?,?,?)"
+            connection.query(queryInsert,[data.nome,data.descricao,data.repeticao],(err,result)=>{
                 if(err){
                     reject(err)
                     return
@@ -34,8 +34,8 @@ class UserModel {
  
     static async update(id, data) {
         return new Promise((resolve,reject)=>{
-            const query = "UPDATE usuarios SET nome = ? ,email =  ?,senha = ? WHERE id = ?"
-            connection.query(query,[data.nome, data.email, data.senha,id],(err,result)=>{
+            const query = "UPDATE treinos SET nome = ? ,descricao =  ?,repeticao = ? WHERE id = ?"
+            connection.query(query,[data.nome, data.descricao, data.repeticao,id],(err,result)=>{
                 if(err){
                     reject(err)
                     return
@@ -50,7 +50,7 @@ class UserModel {
 
     static async delete(id) {
         return new Promise((resolve,reject)=>{
-            const query = 'DELETE FROM usuarios WHERE id = ?'
+            const query = 'DELETE FROM treinos WHERE id = ?'
             connection.query(query,[id],(err,result)=>{
                 if(err){
                     reject(err)
@@ -63,4 +63,4 @@ class UserModel {
 
     }
 }
-module.exports = UserModel
+module.exports = WorkoutModel

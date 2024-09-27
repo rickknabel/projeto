@@ -1,9 +1,9 @@
-const UserModel = require("../model/userrModel")
+const WorkoutModel = require("../model/workoutModel")
 
-class UserController {
+class WorkoutController {
     static async read  (req,res) {
         try {
-        UserModel.read((error,results)=> {
+        WorkoutModel.read((error,results)=> {
             res.status(200).json(results)
         })
         } catch (error) {
@@ -16,7 +16,7 @@ class UserController {
 
     static async create(req,res) {
         const data = req.body
-        await UserModel.create(data)
+        await WorkoutModel.create(data)
         res.status(200).send('register successfully')
         
     }
@@ -25,7 +25,7 @@ class UserController {
         try{
             const id = req.params.id
             const data = req.body 
-            const response = UserModel.update(id, data) 
+            const response = WorkoutModel.update(id, data) 
             if(response){
                 res.status(200).send('user updated succesfully')    
             }else {
@@ -39,9 +39,9 @@ class UserController {
 
     static async delete(req,res) {
         const id = req.params.id 
-        UserModel.delete(id)
+        WorkoutModel.delete(id)
         res.status(200).send('user updated succesfully')
     }
 }
 
-module.exports = UserController
+module.exports = WorkoutController
