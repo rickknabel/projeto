@@ -17,8 +17,8 @@ class UserModel {
 
     static async create(data) {
         return new Promise((resolve,reject)=>{
-            const queryInsert = "INSERT INTO usuarios (nome,email,senha) VALUES (?,?,?)"
-            connection.query(queryInsert,[data.nome,data.email,data.senha],(err,result)=>{
+            const queryInsert = "INSERT INTO usuarios (email,senha) VALUES (?,?)"
+            connection.query(queryInsert,[data.email,data.senha],(err,result)=>{
                 if(err){
                     reject(err)
                     return
